@@ -1,0 +1,157 @@
+//
+//  MainTableViewController.swift
+//  PricePerWeek
+//
+//  Created by Роман Коренев on 13/06/2019.
+//  Copyright © 2019 Роман Коренев. All rights reserved.
+//
+
+import UIKit
+
+class MainTableViewController: UITableViewController {
+    
+    var itemList = [Item]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadData()
+
+//        let format = DateFormatter()
+//        format.dateFormat = "dd.MM.yyyy"
+//        let date = format.date(from: "10.10.2010")
+//
+//        itemList.append(Item(name: "iphone 7", price: 50000, date: date!))
+        
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
+    }
+    
+    // MARK: - Table view data source
+    
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return itemList.count
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainTableViewCell
+        
+        let item = itemList[indexPath.row]
+        cell.item = item
+        cell.populateCell()
+        
+        return cell
+    }
+    
+    
+    
+
+     // Override to support editing the table view.
+     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+     if editingStyle == .delete {
+        itemList.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+     }
+
+    }
+
+     // Override to support rearranging the table view.
+     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+        
+        let movedItem = itemList.remove(at: fromIndexPath.row)
+        itemList.insert(movedItem, at: to.row)
+        tableView.reloadData()
+        
+        
+     }
+
+    
+    /*
+     // Override to support conditional rearranging of the table view.
+     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the item to be re-orderable.
+     return true
+     }
+     */
+    
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        
+        if segue.identifier == "editSegue" {
+            guard let itemNavVC = segue.destination as? UINavigationController, let indexPathSelected = tableView.indexPathForSelectedRow else {return}
+            let itemVC = itemNavVC.topViewController as? ItemStaticTableViewController
+            itemVC?.importedItem = itemList[indexPathSelected.row]
+            itemVC?.delegate = self
+        } else if segue.identifier == "addSegue" {
+            let itemNavVC = segue.destination as? UINavigationController
+            let itemVC = itemNavVC?.topViewController as? ItemStaticTableViewController
+            itemVC?.delegate = self
+        }
+    }
+}
+
+
+extension MainTableViewController: ItemDelegate{
+    func editItem(item: Item) {
+        if let selectedRow = tableView.indexPathForSelectedRow {
+            itemList[selectedRow.row] = item
+            tableView.reloadData()
+            saveData()
+            print("DELEGATE EDITED")
+        }
+    }
+    
+    func addItem(item: Item) {
+        dismiss(animated: true)
+        itemList.append(item)
+        print("delegate ADDED")
+        saveData()
+        tableView.reloadData()
+    }
+    
+    
+}
+
+
+extension MainTableViewController {
+    func documentsFolder()-> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func savePath()-> URL {
+        return documentsFolder().appendingPathComponent("data.plist")
+    }
+    
+    
+    
+    func saveData(){
+        do {
+            let plistEnc = PropertyListEncoder()
+            let savedata = try plistEnc.encode(itemList)
+            try savedata.write(to: savePath())
+            print("data saved")
+        } catch {
+            print("error saving data")
+        }
+    }
+    
+    func loadData(){
+        
+        do {
+            let retrievedData = try Data(contentsOf: savePath())
+            let plistDec = PropertyListDecoder()
+            let itemData = try plistDec.decode([Item].self, from: retrievedData)
+            self.itemList = itemData
+            
+            print("data loaded")
+        } catch {
+            print("error loading data")
+        }
+        
+    }
+}
