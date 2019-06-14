@@ -15,13 +15,8 @@ class MainTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
-
-//        let format = DateFormatter()
-//        format.dateFormat = "dd.MM.yyyy"
-//        let date = format.date(from: "10.10.2010")
-//
-//        itemList.append(Item(name: "iphone 7", price: 50000, date: date!))
-        
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
     
@@ -86,11 +81,17 @@ class MainTableViewController: UITableViewController {
             let itemVC = itemNavVC.topViewController as? ItemStaticTableViewController
             itemVC?.importedItem = itemList[indexPathSelected.row]
             itemVC?.delegate = self
+            
         } else if segue.identifier == "addSegue" {
             let itemNavVC = segue.destination as? UINavigationController
             let itemVC = itemNavVC?.topViewController as? ItemStaticTableViewController
             itemVC?.delegate = self
         }
+    }
+    
+    
+    @IBAction func itemBarButton(_ sender: Any) {
+        countItems()
     }
 }
 
@@ -111,6 +112,22 @@ extension MainTableViewController: ItemDelegate{
         print("delegate ADDED")
         saveData()
         tableView.reloadData()
+    }
+    
+    
+    
+    func countItems(){
+        
+        var currentSum = 0
+        for item in itemList{
+            let current = item.pricePerWeek
+            currentSum += current
+        }
+        let alert = UIAlertController(title: "Cost per week", message: "\(currentSum) RUR", preferredStyle: .alert)
+        let okActon = UIAlertAction(title: "K", style: .cancel, handler: nil)
+        alert.addAction(okActon)
+        present(alert, animated: true, completion: nil)
+        
     }
     
     

@@ -130,6 +130,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="To9-yj-V6R">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="MGX-Yh-HOW">
+                            <connections>
+                                <action selector="cancelButton:" destination="yId-UN-Bze" id="lug-0g-8Fa"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Zan-Vh-gRI">
                             <connections>
                                 <action selector="barButton:" destination="yId-UN-Bze" id="nlh-cd-0YN"/>
@@ -180,7 +185,7 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZ4-Dc-5Kr">
                                                     <rect key="frame" x="0.0" y="57.5" width="288" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -208,11 +213,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="List of items" id="m0t-ih-lR7">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="YMy-1b-gPm">
-                            <connections>
-                                <segue destination="d2A-J7-Fjo" kind="showDetail" identifier="addSegue" id="cfq-0M-2Dj"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="YMy-1b-gPm">
+                                <connections>
+                                    <segue destination="d2A-J7-Fjo" kind="showDetail" identifier="addSegue" id="cfq-0M-2Dj"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Result" id="Zds-Hg-8by">
+                                <connections>
+                                    <action selector="itemBarButton:" destination="q7T-kl-evw" id="Dk7-O6-fbI"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cvx-Hp-Dvo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -240,7 +252,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Cf7-U3-zXZ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ym0-zP-kxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d2A-J7-Fjo" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="m4E-dD-Inu">
@@ -252,6 +263,7 @@
                         <segue destination="yId-UN-Bze" kind="relationship" relationship="rootViewController" id="eMT-PE-eZl"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ym0-zP-kxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4927.5" y="162.67605633802816"/>
         </scene>

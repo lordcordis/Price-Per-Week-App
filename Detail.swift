@@ -85,6 +85,13 @@ class ItemStaticTableViewController: UITableViewController {
         }
     }
     
+    
+    
+    @IBAction func itemsBarButton(_ sender: Any) {
+        
+    }
+    
+    
     @IBAction func barButton(_ sender: Any) {
         
         guard let priceString = priceTF.text, let name = nameTF.text else {return}
