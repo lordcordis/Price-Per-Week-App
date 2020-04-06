@@ -87,8 +87,8 @@ class ItemStaticTableViewController: UITableViewController {
     
     
     
-    @IBAction func itemsBarButton(_ sender: Any) {
-        
+    @IBAction func cancelBarButton(_ sender: Any) {
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
     
