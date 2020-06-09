@@ -46,6 +46,11 @@ class ItemStaticTableViewController: UITableViewController {
         
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
+//        self.navigationController?.hidesBarsOnTap = true
+//    }
+    
     func updateView(){
         nameTF.text = importedItem?.name
         guard let item = importedItem else {return}

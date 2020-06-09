@@ -94,6 +94,11 @@ class MainTableViewController: UITableViewController {
     @IBAction func itemBarButton(_ sender: Any) {
         countItems()
     }
+
+    @IBAction func longPress (_ sender: Any) {
+        countItems()
+    }
+ 
 }
 
 

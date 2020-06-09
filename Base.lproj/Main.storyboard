@@ -3,14 +3,14 @@
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Item Static Table View Controller-->
         <scene sceneID="8D2-Ma-PEX">
             <objects>
-                <tableViewController id="yId-UN-Bze" customClass="ItemStaticTableViewController" customModule="PricePerWeek" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="yId-UN-Bze" customClass="ItemStaticTableViewController" customModule="Per_Week" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="ILp-8R-3ir">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -148,13 +148,13 @@
         <!--List of items-->
         <scene sceneID="wNe-Nc-9DP">
             <objects>
-                <tableViewController id="q7T-kl-evw" customClass="MainTableViewController" customModule="PricePerWeek" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="q7T-kl-evw" customClass="MainTableViewController" customModule="Per_Week" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="skV-0J-ekQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="A7y-Q3-DBq" customClass="MainTableViewCell" customModule="PricePerWeek" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="A7y-Q3-DBq" customClass="MainTableViewCell" customModule="Per_Week" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="A7y-Q3-DBq" id="fso-FT-Dde">
@@ -214,7 +214,7 @@
                             </barButtonItem>
                             <barButtonItem title="Result" image="tray" catalog="system" id="Zds-Hg-8by">
                                 <connections>
-                                    <action selector="itemBarButton:" destination="q7T-kl-evw" id="Dk7-O6-fbI"/>
+                                    <action selector="itemBarButton:" destination="q7T-kl-evw" id="GDd-5J-Isi"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
